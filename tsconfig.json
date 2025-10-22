@@ -16,7 +16,8 @@
     "module": "preserve",
     "baseUrl": "./src",
     "paths": {
-      "@shared/*": ["app/shared/*"]
+      "@shared/*": ["app/shared/*"],
+      "@page-admin/*": ["app/features/admin/*"],
     },
     
   },

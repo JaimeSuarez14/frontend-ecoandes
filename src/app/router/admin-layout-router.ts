@@ -29,7 +29,13 @@ export const AdminLayoutRouter: Routes = [
   {
     path: 'productos',
     canActivate:[hasRolGuard('ADMIN')],
-    loadComponent: () => import('../features/admin/productos-admin/productos-admin').then(m => m.ProductosAdmin),
+    loadComponent: () => import('@page-admin/productos-admin/productos-admin').then(m => m.ProductosAdmin),
     title:'Usuarios'
+  },
+  {
+    path: 'perfil-login',
+    canActivate:[hasRolGuard('ADMIN')],
+    loadComponent: () => import('@page-admin/usuario-logeado/perfil-usuario/perfil-usuario'),
+    title:'Perfil'
   },
 ]

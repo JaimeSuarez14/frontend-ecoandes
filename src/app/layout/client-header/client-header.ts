@@ -1,11 +1,12 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '@shared/services/auth-service';
+import { HasAuth } from "app/core/directives/has-auth";
 
 @Component({
   selector: 'app-client-header',
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive, HasAuth, TitleCasePipe],
   templateUrl: './client-header.html',
   styleUrl: './client-header.css'
 })
