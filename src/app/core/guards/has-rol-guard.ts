@@ -2,9 +2,14 @@ import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import { AuthService } from '@shared/services/auth-service';
 
-export const hasRolGuard = (requiredRole: string): CanActivateFn => {
+export const hasRolGuard = (requiredRoles: string[]): CanActivateFn => {
   return () => {
-    const hasRol = inject(AuthService).hasRole(requiredRole);
+    const authService = inject(AuthService);
+    const rolUser = authService.currentUserAuth$();
+    if(rolUser===null){
+      return false;
+    }
+    const hasRol =  requiredRoles.includes(rolUser.rol!);
     return hasRol;
   };
 };

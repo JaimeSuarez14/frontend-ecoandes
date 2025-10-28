@@ -78,7 +78,7 @@
               </div>
               }
             </div>
-            
+
             <div class="mb-6">
               <div class="flex items-center">
                 <input class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out" type="checkbox"
@@ -96,7 +96,7 @@
               <button type="submit"
                 class="w-full flex justify-center py-3 px-4 btn-primary-gradient bg-gradient-to-tr from-[#003366] to-[#00b894] text-amber-50 hover:translate-y-[-2px] hover:shadow-[0_5px_15px_rgba(102,126,234,0.4)] rounded-full hover:font-semibold transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
                 [disabled]="!loginForm.valid">
-                @if(authService.isLoading()){ 
+                @if(authService.isLoading()){
                   <app-spiner-cargando mensaje="Iniciando Sesión" />
                 }@else{
                   <i class="bi bi-box-arrow-in-right mr-2"></i> Iniciar Sesión
@@ -115,7 +115,7 @@
           </div>
           <div class="mb-3">
             <p class="mb-2 text-gray-500 text-sm">¿No tienes cuenta?</p>
-            <a href="/register"
+            <a routerLink="/register"
               class="inline-flex items-center px-4 py-2 border border-blue-500 rounded-md shadow-sm text-sm font-medium text-blue-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">
               <i class="bi bi-person-plus mr-1"></i>
               Registrarse

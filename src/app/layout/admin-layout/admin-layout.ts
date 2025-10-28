@@ -8,12 +8,15 @@ import {
 } from '@angular/router';
 import { AuthService } from '@shared/services/auth-service';
 import { HasRold } from 'app/core/directives/has-rold';
+import { Popover } from "@shared/components/popover/popover";
 
 @Component({
   selector: 'app-admin-layout',
   imports: [
     TitleCasePipe,
-    RouterLink, RouterLinkActive, RouterOutlet, CommonModule, HasRold],
+    RouterLink, RouterLinkActive, RouterOutlet, CommonModule, HasRold,
+    Popover
+],
   templateUrl: './admin-layout.html',
   styleUrl: './admin-layout.css',
 })
@@ -43,9 +46,6 @@ export class AdminLayout {
     return titles[url] || 'Administración';
   }
 
-  logout(): void {
-    console.log('cerrar sesion');
-  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {

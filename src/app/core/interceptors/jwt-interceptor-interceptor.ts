@@ -17,6 +17,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
+  //si el token aun no ha expirado volvemos a enviarlo
   if (!authService.isTokenExpired(token)) {
     const cloneReq = req.clone({
       setHeaders: {
@@ -26,7 +27,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     return next(cloneReq);
   }
 
-  // Token expirado, intentamos refrescar
+  // Refresh token expirado, salimos de la sesion
   if (authService.isTokenExpired(refreshToken)) {
     authService.logout();
     return next(req);

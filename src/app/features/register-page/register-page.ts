@@ -27,7 +27,7 @@ export class RegisterPage {
     celular: '',
     direccion: '',
   };
-  
+
 
   // Signals para la visualización y mensajes
   passwordVisible = signal(false);
@@ -44,8 +44,8 @@ export class RegisterPage {
       this.usuarioSignal.direccion.trim().length > 10
     );
   }
-    
-  
+
+
 
   // Computed para mostrar mensaje según estado del servicio
   isLoading = computed(() => this.authService.isLoading());
@@ -86,6 +86,7 @@ export class RegisterPage {
     }
     const userData: Usuario = { ...this.usuarioSignal };
     this.authService.crearUsuario(userData);
+
   }
 
   togglePasswordVisibility(): void {

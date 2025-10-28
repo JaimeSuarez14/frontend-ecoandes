@@ -1,0 +1,23 @@
+@if (model.visible()) {
+<div #overlay class="fixed inset-0 bg-black/70 flex items-center justify-center z-50" (click)="model.cancelar()"
+  (keydown.escape)="model.cancelar()" tabindex="0">
+  <div class="bg-white p-6 rounded-xl shadow-xl w-80 relative animate-fade-in" (click)="$event.stopPropagation()">
+    <p class="mb-6 text-gray-900 text-lg font-semibold text-center">
+      {{ model.mensaje() }}
+    </p>
+    <div class="flex justify-center gap-3">
+      <button (click)="model.cancelar()"
+        class="px-4 py-2 rounded-md bg-red-500 text-gray-100 hover:bg-red-600 transition flex items-center gap-2">
+        <i class="bi bi-x-circle"></i>
+        Cancelar
+      </button>
+      <button (click)="model.aceptar()"
+        class="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition flex items-center gap-2">
+        <i class="bi bi-check-circle"></i>
+        Aceptar
+      </button>
+
+    </div>
+  </div>
+</div>
+}

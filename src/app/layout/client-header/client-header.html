@@ -25,20 +25,20 @@
         <li>
           <a class="block py-0.5 hover:text-gray-600  cursor-pointer transition duration-300  border-b-2 border-b-amber-800/50 md:border-none"
             routerLink="/" routerLinkActive="font-bold text-green-400 border-y-2 border-green-400 "
-            [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+            [routerLinkActiveOptions]="{ exact: true }"><i class="bi bi-house mr-1"></i>Inicio</a>
         </li>
         <li>
           <a class="block py-0.5 hover:text-gray-600  cursor-pointer transition duration-300 border-b-2 border-b-amber-800/50 md:border-none"
             routerLink="/productos"
-            routerLinkActive="font-bold text-green-400 border-y-2 border-green-400">Productos</a>
+            routerLinkActive="font-bold text-green-400 border-y-2 border-green-400"><i class="bi bi-cup-hot mr-1"></i>Productos</a>
         </li>
         <li>
           <a class="block py-0.5  hover:text-gray-600  cursor-pointer transition duration-300 border-b-2 border-b-amber-800/50 md:border-none"
-            routerLink="/nosotros" routerLinkActive="font-bold text-green-400 border-y-2 border-green-400">Nosotros</a>
+            routerLink="/nosotros" routerLinkActive="font-bold text-green-400 border-y-2 border-green-400"><i class="bi bi-people-fill mr-1"></i>Nosotros</a>
         </li>
         <li>
           <a class="block py-0.5  hover:text-gray-600  cursor-pointer transition duration-300 border-b-2 border-b-amber-800/50 md:border-none"
-            routerLink="/contacto" routerLinkActive="font-bold text-green-400 border-y-2 border-green-400">Contacto</a>
+            routerLink="/contacto" routerLinkActive="font-bold text-green-400 border-y-2 border-green-400"><i class="bi bi-globe mr-1"></i>Contacto</a>
         </li>
 
         <div class="group relative" *appHasAuth="false">
@@ -58,10 +58,10 @@
             </svg>
           </button>
           <div
-            class="absolute w-full rounded-md  top-12 max-h-0 group-hover:max-h-[500px] flex flex-col bg-amber-50 overflow-hidden transition-all duration-400 ease-in-out text-amber-900">
-            <a class="p-2 hover:bg-amber-400/50 transition-all duration-400 ease-in-out" routerLink="/login">Iniciar
-              Sesion</a>
-            <a class="p-2 hover:bg-amber-400/50" routerLink="/register">Registrarse</a>
+            class="absolute w-full md:w-64 rounded-md  top-12 max-h-0 group-hover:max-h-[500px] flex flex-col bg-amber-50 overflow-hidden transition-all duration-400 ease-in-out text-amber-900">
+            <a class="p-2 hover:bg-amber-400/50 transition-all duration-400 ease-in-out" routerLink="/login">
+              <i class="bi bi-people mr-1"></i>Iniciar Sesion</a>
+            <a class="p-2 hover:bg-amber-400/50" routerLink="/register"><i class="bi bi-person-add mr-1"></i>Registrarse</a>
           </div>
         </div>
 
@@ -88,7 +88,7 @@
               (click)="cerrarSesion()"><i class="fas fa-sign-out-alt mr-2"></i><span>Cerrar sesión</span> </button>
 
           </div>
-        </div>  
+        </div>
       </ul>
     </div>
   </div>

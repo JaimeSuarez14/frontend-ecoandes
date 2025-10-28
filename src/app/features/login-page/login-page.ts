@@ -1,14 +1,13 @@
+import { SessionService } from './../../shared/services/session-service';
 import { Component, inject, signal, computed, effect } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
-  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth-service';
 import { noSpacesValidator } from '../../shared/validators/noSpacesValidator';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { SpinerCargando } from "@shared/components/spiner-cargando/spiner-cargando";
 
 interface Message {
@@ -18,7 +17,7 @@ interface Message {
 
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule, SpinerCargando],
+  imports: [ReactiveFormsModule, SpinerCargando, RouterLink],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css',
 })
@@ -26,6 +25,7 @@ export class LoginPage {
   private fb = inject(FormBuilder);
   public authService = inject(AuthService);
   private router = inject(Router);
+  private SessionService = inject(SessionService)
 
   // Signals
   mensaje = signal<Message | null>(null);
@@ -55,6 +55,7 @@ export class LoginPage {
           type: 'success',
           text: 'Iniciando sesión...',
         });
+        this.SessionService.ventanaMarcada()
         this.router.navigate(['/']);
       }
       console.log(this.authService.currentUserAuth$());
@@ -105,7 +106,7 @@ export class LoginPage {
     }
     if (this.username?.valid && this.password?.valid) {
       const username = this.username.value!;
-      const password = this.password.value! ;  
+      const password = this.password.value! ;
       this.authService.login(password, username);
       this.hasFirstInto.set(true);
     }

@@ -14,7 +14,7 @@ export class AuthService {
   private router = inject(Router);
 
   private usuariosSignal = signal<Usuario[]>([]);
-  private currentUser = signal<UserAuthenticate | null>(null);
+  private currentUser = signal<Usuario | null>(null);
   private isLoadingSignal = signal<boolean>(false);
   private errorSignal = signal<string | null>(null);
 
@@ -24,10 +24,10 @@ export class AuthService {
   readonly currentUserAuth$ = this.currentUser.asReadonly();
 
   constructor(private http: HttpClient) {
-    this.currentUser.set(this.getDecodedToken() || null);
+    if(this.currentUserAuth$()===null){
+      this.currentUser.set(this.getDecodedToken() || null);
+    }
   }
-
-  
 
   crearUsuario(nuevoUsuario: Usuario): void {
     this.isLoadingSignal.set(true);
@@ -86,15 +86,26 @@ export class AuthService {
       .subscribe();
   }
 
-  private getDecodedToken(): UserAuthenticate | null {
+  private getDecodedToken(): Usuario | null {
     const token = localStorage.getItem('token');
-    if (!token) return null;
+    if (!token){
+      this.logout();
+      return null
+    };
     try {
-      const dce = jwtDecode<DecodedToken>(token);
+      const dce = jwtDecode<Usuario>(token);
       return {
         email: dce.email,
         rol: dce.rol,
         username: dce.username,
+        nombreCompleto: dce.nombreCompleto,
+        direccion: dce.direccion,
+        estado: dce.estado,
+        password: "*******",
+        id: dce.id,
+        celular: dce.celular,
+        fechaRegistro: dce.fechaRegistro,
+
       }
     } catch (error) {
       console.error('Error decodificando token', error);
@@ -116,8 +127,8 @@ export class AuthService {
       const payload = JSON.parse(atob(token.split('.')[1]));
       console.log(payload.exp);
       console.log(Date.now() / 1000);
-      
-      
+
+
       return payload.exp < Date.now() / 1000;
     } catch (error) {
       return true;
@@ -137,7 +148,7 @@ export class AuthService {
       this.logout();
       return of(null);
     }
-  
+
     return this.http.post<UsuarioResponse>(`${this.apiUrl}/refresh`,
       {},{headers: {Authorization: `Bearer ${refreshToken}`,},})
       .pipe(
@@ -157,7 +168,7 @@ export class AuthService {
       finalize(() => this.isLoadingSignal.set(false))
     );
   }
-  
+
 
   private clearSession(): void {
     localStorage.removeItem("token");
@@ -170,5 +181,11 @@ export class AuthService {
     // codigo pendiente
     console.log('User logged out');
     this.clearSession();
+  }
+
+  actualizarPerfil(usuario: Usuario){
+    this.currentUser.set(usuario || null);
+    this.router.navigate(['/admin/perfil-login']);
+
   }
 }

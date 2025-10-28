@@ -1,7 +1,7 @@
 <div class="flex h-screen bg-[#f5f6fa]">
   <!-- Sidebar -->
   <aside
-    [class]="' text-white bg-black transition-all duration-300 ease-in overflow-hidden ' + (sidebarCollapsed ? 'w-16' : 'w-[250px]')">
+    [class]="' text-white bg-black transition-all duration-300 ease-in  ' + (sidebarCollapsed ? 'w-16' : 'w-[250px]')">
     <div
       [class]="'flex items-center  border-b-2 border-white/20 ' + (sidebarCollapsed ? 'p-0.5 gap-0.5' : 'p-2 gap-2')">
       <a routerLink="/"><img src="assets/img/Andes_Cafe.png" alt="Logo"
@@ -14,44 +14,65 @@
 
     <nav [class]="' '+ (sidebarCollapsed ? 'p-2' : 'p-4')">
       <a routerLink="/admin"
-        [class]="'flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:text-amber-200 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
+        [class]="'flex relative group items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:bg-blue-900/40 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
         routerLinkActive="font-bold text-green-400 border-y-2 border-green-400"
         [routerLinkActiveOptions]="{ exact: true }">
         <i class="fas fa-tachometer-alt text-center"></i>
-        <span *ngIf="!sidebarCollapsed">Dashboard</span>
+        @if(!sidebarCollapsed){
+          <span >Dashboard</span>
+        }@else {
+          <app-popover contenido="Dashboard"/>
+        }
       </a>
 
       <a *appHasRold="'ADMIN'" routerLink="/admin/usuarios"
-        [class]="'flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:text-amber-200 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
+        [class]="'group relative flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:bg-blue-900/40 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
         routerLinkActive="font-bold text-green-400 border-y-2 border-green-400">
-        <i class="fas fa-project-diagram text-center"></i>
-        <span *ngIf="!sidebarCollapsed">Usuarios</span>
+        <i class="fas fa-users"></i>
+        @if(!sidebarCollapsed){
+          <span >Usuarios</span>
+        }@else {
+          <app-popover contenido="Usuarios"/>
+        }
       </a>
 
       <a *appHasRold="'ADMIN'" routerLink="/admin/consultas"
-        [class]="'flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:text-amber-200 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
+        [class]="'group relative flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:bg-blue-900/40 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
         routerLinkActive="font-bold text-green-400 border-y-2 border-green-400">
         <i class="fas fa-tasks"></i>
-        <span *ngIf="!sidebarCollapsed">Consultas</span>
+        @if(!sidebarCollapsed){
+          <span >Consultas</span>
+        }@else {
+          <app-popover contenido="Consultas"/>
+        }
       </a>
 
       <a *appHasRold="'ADMIN'" routerLink="/admin/mensajes"
-        [class]="'flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:text-amber-200 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
+        [class]="'group relative flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:bg-blue-900/40 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
         routerLinkActive="font-bold text-green-400 border-y-2 border-green-400">
-        <i class="fas fa-users"></i>
-        <span *ngIf="!sidebarCollapsed">Mensajes</span>
+
+        <i class="fa-regular fa-message"></i>
+        @if(!sidebarCollapsed){
+          <span >Mensajes</span>
+        }@else {
+          <app-popover contenido="Mensajes"/>
+        }
       </a>
 
       <a *appHasRold="'ADMIN'" routerLink="/admin/productos"
-        [class]="'flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:text-amber-200 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
+        [class]="'group relative flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:bg-blue-900/40 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
         routerLinkActive="font-bold text-green-400 border-y-2 border-green-400">
         <i class="fas fa-building"></i>
-        <span *ngIf="!sidebarCollapsed">Productos</span>
+        @if(!sidebarCollapsed){
+          <span >Productos</span>
+        }@else {
+          <app-popover contenido="Productos"/>
+        }
       </a>
 
       <div class="group">
         <a routerLink="/admin/configuración"
-          [class]="'flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:text-amber-200 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
+          [class]="'flex items-center gap-3 py-2 transition-colors duration-300 ease-in-out border-l-2 border-amber-100 hover:bg-blue-900/40 mb-2 ' + (sidebarCollapsed ? ' justify-center w-full' : 'px-4')"
           routerLinkActive="font-bold text-green-400 border-y-2 border-green-400">
           <i class="fas fa-briefcase"></i>
           @if(!sidebarCollapsed){
@@ -88,14 +109,14 @@
   </aside>
 
   <!-- Main content area -->
-  <div class="flex flex-1 flex-col overflow-hidden">
+  <div class="flex flex-1 flex-col  z-50">
     <!-- Top bar -->
     <header class="white py-4 px-2 border-b border-[#e9ecef] flex justify-between items-center shadow-lg">
       <div class="top-bar-left">
         <h2 class="text-2xl text-amber-900">{{ 'Panel de '+getPageTitle()}}</h2>
       </div>
 
-      <div class="group flex items-center gap-4 p-1 hover:bg-amber-50/80 relative">
+      <div class="group flex items-center gap-4 p-1 border border-transparent rounded-xl hover:bg-amber-50/80 hover:border hover:border-amber-300 relative">
         <div
           class="w-8 h-8 text-lg rounded-full border bg-amber-800/10 border-amber-500 flex justify-center items-center">
           <i class="fa-solid fa-user-tie text-amber-950"></i>
@@ -110,19 +131,18 @@
         </div>
         <div
           class="absolute w-64 rounded-md  top-12 max-h-0 right-0 group-hover:max-h-[500px] bg-amber-50 overflow-hidden transition-all duration-400 ease-in-out text-amber-900 z-50">
-          <div class="p-2 bg-amber-400/50 transition-all duration-400 ease-in-out flex flex-col gap-1 items-start">
+          <div class="p-2 border-2 border-amber-400 bg-amber-300/50 transition-all duration-400 ease-in-out flex flex-col gap-1 items-start">
             <a routerLink="/admin/perfil-login"
-              class=" text-black py-0.5 w-full px-1 text-left rounded-lg cursor-pointer hover:opacity-50 transition-colors duration-200 ease-in text-sm font-bold "
-              (click)="logout()">
+              class=" text-black py-0.5 w-full px-1 text-left rounded-lg cursor-pointer hover:bg-white/50  transition-colors duration-200 ease-in text-sm font-bold "
+              >
               <i class="bi bi-person-bounding-box text-white p-1 mr-2 rounded-md bg-blue-500"></i>
               Ver Perfil
             </a>
-            <button
-              class=" text-black py-0.5 w-full px-1 text-left rounded-lg cursor-pointer hover:bg-white/50 transition-colors duration-200 ease-in text-sm font-bold "
-              (click)="logout()">
+            <a routerLink="/admin/actualizar-perfil"
+              class=" text-black py-0.5 w-full px-1 text-left rounded-lg cursor-pointer hover:bg-white/50 transition-colors duration-200 ease-in text-sm font-bold ">
               <i class="bi bi-arrow-clockwise text-white p-1 mr-2 rounded-md bg-yellow-500"></i>
-              Actualzar Info
-            </button>
+              Actualizar Perfil
+            </a>
             <button
               class=" text-black py-0.5 w-full px-1 text-left rounded-lg cursor-pointer hover:bg-white/50 transition-colors duration-200 ease-in text-sm font-bold "
               (click)="authService.logout()">
@@ -137,7 +157,7 @@
     </header>
 
     <!-- Page content -->
-    <main class="flex-1 overflow-y-auto">
+    <main class="flex-1 overflow-y-auto overflow-hidden">
       <router-outlet></router-outlet>
     </main>
   </div>

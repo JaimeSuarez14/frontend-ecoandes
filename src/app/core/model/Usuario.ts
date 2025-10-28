@@ -18,6 +18,8 @@ export interface UsuarioResponse {
 
 export interface UserAuthenticate {
   email: string;
-  rol: string;
+  rol?: string;
   username: string;
+  nombreCompleto: string;
+  direccion: string;
 }
