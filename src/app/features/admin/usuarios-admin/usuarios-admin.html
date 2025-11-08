@@ -15,8 +15,8 @@
       <div id="table_1_1_filter" class="column-model">
         <div class="relative bootstrap-select wdt-select-filter wdt-filter-control bs3">
           <select class="pl-6 pr-2 text-blue-700 dark:text-white border-none py-2 bg-blue-100 dark:bg-amber-950"
-            title="Username" data-index="1" data-live-search="true" [(ngModel)]="searchUsername" data-live-search-placeholder="Search..."
-            tabindex="null">
+            title="Username" data-index="1" data-live-search="true" [(ngModel)]="searchUsername"
+            data-live-search-placeholder="Search..." tabindex="null">
             <option value="">Selecciona...</option>
             @for (user of currentUsers(); track $index) {
             <option [value]="user.username">{{ user.username}}</option>
@@ -37,10 +37,11 @@
           class="dark:bg-amber-800 bg-blue-800 text-white font-semibold py-2 px-4 rounded-lg hover:bg-amber-700 transition-colors"><i
             class="bi bi-funnel"></i> Email</button>
         @if(activeFiltroEmail){
-        <div class="absolute top-6 flex items-center gap-1 bg-slate-200 text-amber-950 dark:bg-amber-950 dark:text-white  table_1-checkbox-2" >
+        <div
+          class="absolute top-6 flex items-center gap-1 bg-slate-200 text-amber-950 dark:bg-amber-950 dark:text-white  table_1-checkbox-2">
           <i class="bi bi-search ml-2"></i>
-          <input type="text" class="p-2 rounded-2xl focus:outline-none focus:ring-0 " placeholder="Ingresa el correo a buscar" [(ngModel)]="searchEmail"
-          >
+          <input type="text" class="p-2 rounded-2xl focus:outline-none focus:ring-0 "
+            placeholder="Ingresa el correo a buscar" [(ngModel)]="searchEmail">
         </div>
         }
       </div>
@@ -121,7 +122,7 @@
       @for (usuario of listaFiltrada(); track $index) {
       @if (usuario.username !== authService.currentUserAuth$()?.username) {
       <tr
-        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 fade-in fade-out" >
         <th scope="row" class="px-1 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           {{usuario.nombreCompleto}}
         </th>
@@ -157,6 +158,12 @@
         </td>
       </tr>
       }
+      }
+
+      @if(listaFiltrada().length===0){
+      <tr>
+        <td colspan="6" class="border px-4 py-4 text-center">No se encontraron resultados con esos filtros.</td>
+      </tr>
       }
 
 
