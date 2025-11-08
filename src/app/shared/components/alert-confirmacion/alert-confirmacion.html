@@ -1,22 +1,31 @@
 @if (model.visible()) {
-<div #overlay class="fixed inset-0 bg-black/70 flex items-center justify-center z-50" (click)="model.cancelar()"
-  (keydown.escape)="model.cancelar()" tabindex="0">
-  <div class="bg-white p-6 rounded-xl shadow-xl w-80 relative animate-fade-in" (click)="$event.stopPropagation()">
-    <p class="mb-6 text-gray-900 text-lg font-semibold text-center">
-      {{ model.mensaje() }}
-    </p>
-    <div class="flex justify-center gap-3">
-      <button (click)="model.cancelar()"
-        class="px-4 py-2 rounded-md bg-red-500 text-gray-100 hover:bg-red-600 transition flex items-center gap-2">
-        <i class="bi bi-x-circle"></i>
-        Cancelar
-      </button>
-      <button (click)="model.aceptar()"
-        class="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition flex items-center gap-2">
-        <i class="bi bi-check-circle"></i>
-        Aceptar
-      </button>
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" (click)="model.cancelar()"></div>
+  <div
+    class="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-gray-700 transform transition-all animate-fade-in">
+    <div [class]="'absolute top-0 left-0 right-0 h-1 bg-gradient-to-r '+(alertaSeleccionado().colors.gradient)"></div>
 
+    <div class="p-8">
+      <div class="flex flex-col items-center text-center">
+        <div [class]="`w-20 h-20 rounded-full ${alertaSeleccionado().colors.bg} flex items-center justify-center mb-6 shadow-lg`">
+          <i [class]="` text-6xl ${alertaSeleccionado().icon} ${alertaSeleccionado().colors.icon}`"></i>
+        </div>
+
+        <h3 class="text-2xl font-bold text-white mb-3">{{alertaSeleccionado().title}}</h3>
+        <p class="text-gray-300 text-base leading-relaxed mb-4">{{ model.mensaje()}}</p>
+        <p class="text-gray-300 text-xs leading-relaxed mb-8">{{ alertaSeleccionado().message }}</p>
+
+        <div class="flex gap-3 w-full">
+          <button  (click)="model.cancelar()"
+            class="flex-1 px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-xl font-semibold transition-all duration-200 transform hover:scale-105">
+            Cancelar
+          </button>
+          <button (click)="model.aceptar()"
+            [class]="`flex-1 px-6 py-3 bg-gradient-to-r ${alertaSeleccionado().colors.gradient} text-white rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg ${alertaSeleccionado().colors.button}`">
+            Aceptar
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

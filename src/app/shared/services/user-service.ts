@@ -123,4 +123,20 @@ export class UserService {
       return false;
     }
   }
+
+  async actualizarContraseña(password: string): Promise<ApiResponse> {
+    try {
+      const id = this.authService.currentUserAuth$()!.id;
+      const response = await firstValueFrom(
+        this.http.post<ApiResponse>(
+          `${this.apiUrl}/update-password/${id}`,
+          password
+        )
+      );
+      return response;
+    } catch (error: unknown) {
+      console.error('Error al verificar contraseña', error);
+      return {status: 'error' , message:"Error al verificar contraseña "+ error};
+    }
+  }
 }

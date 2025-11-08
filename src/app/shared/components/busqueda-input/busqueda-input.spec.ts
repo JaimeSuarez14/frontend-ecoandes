@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import  ActualizarPerfil  from './actualizar-perfil';
+import { BusquedaInput } from './busqueda-input';
 
-describe('ActualizarPerfil', () => {
-  let component: ActualizarPerfil;
-  let fixture: ComponentFixture<ActualizarPerfil>;
+describe('BusquedaInput', () => {
+  let component: BusquedaInput;
+  let fixture: ComponentFixture<BusquedaInput>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ActualizarPerfil]
+      imports: [BusquedaInput]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ActualizarPerfil);
+    fixture = TestBed.createComponent(BusquedaInput);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

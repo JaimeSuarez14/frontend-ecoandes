@@ -5,6 +5,8 @@
 
 @import "tailwindcss";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+@custom-variant dark (&:where(.dark, .dark *));
+
 
 @theme {
   --font-Caveat: "Caveat", cursive;

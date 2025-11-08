@@ -5,7 +5,9 @@ import { Injectable, signal } from "@angular/core";
 })
 export class SessionService {
   //esta clases sirve para alertas al iniciar o obtener, se muestra la primera vez que se lancen
-  private marcadorVentana = signal(false);
+  private marcadorVentana = signal(true);
+  private isDark =  signal(true);
+  readonly isDark$ =  this.isDark.asReadonly();
 
   ventanaMarcada() {
     this.marcadorVentana.set(true);
@@ -15,6 +17,10 @@ export class SessionService {
     const valor = this.marcadorVentana();
     this.marcadorVentana.set(false);
     return valor;
+  }
+
+  cambiarTema(){
+    this.isDark.update(is => !is)
   }
 
 }

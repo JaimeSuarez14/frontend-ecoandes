@@ -1,5 +1,5 @@
 import { CommonModule, TitleCasePipe } from '@angular/common';
-import { Component, HostListener, inject, signal } from '@angular/core';
+import { Component, effect, HostListener, inject, signal } from '@angular/core';
 import {
   Router,
   RouterLink,
@@ -9,6 +9,7 @@ import {
 import { AuthService } from '@shared/services/auth-service';
 import { HasRold } from 'app/core/directives/has-rold';
 import { Popover } from "@shared/components/popover/popover";
+import { SessionService } from '@shared/services/session-service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -25,6 +26,18 @@ export class AdminLayout {
   sidebarCollapsed = false;
   router = inject(Router);
   screenWidth = 0;
+  sessionService = inject(SessionService)
+
+  constructor(){
+    effect(() =>{
+      const isDark = this.sessionService.isDark$()
+      if(isDark){
+        document.documentElement.classList.add("dark")
+      }else{
+        document.documentElement.classList.remove("dark")
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.updateScreenWidth();
